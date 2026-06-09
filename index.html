@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Builder – Create & Download Your Resume</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">CV<span>Builder</span></div>
+    <button class="btn-primary" onclick="downloadPDF()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: FORM PANEL -->
+  <aside class="form-panel">
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" onclick="switchTab('personal',this)" role="tab">Personal</button>
+      <button class="tab" onclick="switchTab('education',this)" role="tab">Education</button>
+      <button class="tab" onclick="switchTab('experience',this)" role="tab">Experience</button>
+      <button class="tab" onclick="switchTab('skills',this)" role="tab">Skills</button>
+      <button class="tab" onclick="switchTab('extras',this)" role="tab">Extras</button>
+    </nav>
+
+    <!-- PERSONAL -->
+    <section id="tab-personal" class="tab-pane active">
+      <div class="pane-title">Personal info</div>
+      <div class="field"><label>Full name</label><input id="p-name" type="text" placeholder="Ahmed Khan" oninput="render()"></div>
+      <div class="field"><label>Job title</label><input id="p-title" type="text" placeholder="Senior Software Engineer" oninput="render()"></div>
+      <div class="two-col">
+        <div class="field"><label>Email</label><input id="p-email" type="email" placeholder="ahmed@email.com" oninput="render()"></div>
+        <div class="field"><label>Phone</label><input id="p-phone" type="text" placeholder="+92 300 1234567" oninput="render()"></div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label>Location</label><input id="p-loc" type="text" placeholder="Lahore, Pakistan" oninput="render()"></div>
+        <div class="field"><label>LinkedIn / Website</label><input id="p-link" type="text" placeholder="linkedin.com/in/ahmed" oninput="render()"></div>
+      </div>
+      <div class="field"><label>Professional summary</label><textarea id="p-summary" rows="4" placeholder="Write a brief 2-3 sentence professional summary highlighting your key strengths and career goals..." oninput="render()"></textarea></div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="tab-education" class="tab-pane">
+      <div class="pane-title">Education</div>
+      <div id="edu-list"></div>
+      <button class="btn-add" onclick="addEdu()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add education
+      </button>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="tab-experience" class="tab-pane">
+      <div class="pane-title">Work experience</div>
+      <div id="exp-list"></div>
+      <button class="btn-add" onclick="addExp()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add experience
+      </button>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="tab-skills" class="tab-pane">
+      <div class="pane-title">Skills</div>
+      <div class="skill-row">
+        <input id="skill-inp" type="text" placeholder="e.g. JavaScript" onkeydown="if(event.key==='Enter')addSkill()">
+        <button class="btn-sm" onclick="addSkill()">Add</button>
+      </div>
+      <div class="tags" id="skill-tags"></div>
+
+      <div class="pane-subtitle">Languages</div>
+      <div class="skill-row">
+        <input id="lang-inp" type="text" placeholder="e.g. English (Fluent)" onkeydown="if(event.key==='Enter')addLang()">
+        <button class="btn-sm" onclick="addLang()">Add</button>
+      </div>
+      <div class="tags" id="lang-tags"></div>
+    </section>
+
+    <!-- EXTRAS -->
+    <section id="tab-extras" class="tab-pane">
+      <div class="pane-title">Certifications</div>
+      <div id="cert-list"></div>
+      <button class="btn-add" onclick="addCert()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add certification
+      </button>
+
+      <div class="pane-subtitle" style="margin-top:1.5rem">Projects</div>
+      <div id="proj-list"></div>
+      <button class="btn-add" onclick="addProj()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add project
+      </button>
+    </section>
+
+    <div class="mobile-download">
+      <button class="btn-primary full" onclick="downloadPDF()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT: LIVE PREVIEW -->
+  <div class="preview-panel">
+    <div class="preview-label">Live preview</div>
+    <div class="preview-page" id="cv-preview"></div>
+  </div>
+
+</main>
+
+<div id="toast" class="toast">PDF downloaded!</div>
+
+<script src="app.js"></script>
+</body>
+</html>

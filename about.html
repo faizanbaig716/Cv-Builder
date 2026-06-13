@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About – ProCV Builder</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="page-body">
+<nav class="navbar"><div class="nav-wrap">
+  <a href="index.html" class="brand">📄 Pro<strong>CV</strong></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-a">Home</a><a href="templates.html" class="nav-a">Templates</a>
+    <a href="builder.html" class="nav-a">Builder</a><a href="about.html" class="nav-a active">About</a><a href="contact.html" class="nav-a">Contact</a>
+  </div>
+  <a href="builder.html" class="nav-btn">Build My CV →</a>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="templates.html">Templates</a><a href="builder.html">Builder</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="builder.html" class="nav-btn" style="margin-top:8px;text-align:center">Build My CV →</a>
+</div></nav>
+
+<div class="page-section">
+  <div class="sec-label">Our story</div>
+  <h1 style="font-size:2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1rem">About ProCV Builder</h1>
+  <p style="font-size:16px;color:var(--text2);line-height:1.7;max-width:640px;margin-bottom:2rem">ProCV was built with one goal: help every person — regardless of profession, background, or experience level — create a professional, ATS-ready CV for free. No subscriptions, no watermarks, no tricks.</p>
+
+  <div class="about-grid">
+    <div class="about-card"><div class="ac-icon">🌍</div><h3>For Everyone</h3><p>Whether you're a doctor, teacher, engineer, fresh graduate, or freelancer — ProCV works for any profession in any country.</p></div>
+    <div class="about-card"><div class="ac-icon">🔒</div><h3>100% Private</h3><p>Your data never leaves your browser. We don't store, track, or share anything. Everything runs locally on your device.</p></div>
+    <div class="about-card"><div class="ac-icon">🆓</div><h3>Always Free</h3><p>No premium tier, no hidden charges. Every feature — all 4 templates, ATS scoring, photo upload, PDF download — is free forever.</p></div>
+    <div class="about-card"><div class="ac-icon">⚡</div><h3>Fast & Simple</h3><p>Fill in your details and download your CV in under 10 minutes. No account needed, no complex setup, just open and build.</p></div>
+  </div>
+
+  <div style="margin-top:2.5rem;text-align:center">
+    <a href="builder.html" class="btn-primary">Start Building Your CV →</a>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-wrap">
+  <div class="footer-brand">📄 Pro<strong>CV</strong></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="templates.html">Templates</a><a href="builder.html">Builder</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div>
+  <p class="footer-copy">© 2026 ProCV Builder · Free forever</p>
+</div></footer>
+<script>function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open')}</script>
+</body>
+</html>

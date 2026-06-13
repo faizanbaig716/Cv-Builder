@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact – ProCV Builder</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="page-body">
+<nav class="navbar"><div class="nav-wrap">
+  <a href="index.html" class="brand">📄 Pro<strong>CV</strong></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-a">Home</a><a href="templates.html" class="nav-a">Templates</a>
+    <a href="builder.html" class="nav-a">Builder</a><a href="about.html" class="nav-a">About</a><a href="contact.html" class="nav-a active">Contact</a>
+  </div>
+  <a href="builder.html" class="nav-btn">Build My CV →</a>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="templates.html">Templates</a><a href="builder.html">Builder</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="builder.html" class="nav-btn" style="margin-top:8px;text-align:center">Build My CV →</a>
+</div></nav>
+
+<div class="page-section">
+  <div class="sec-label">Get in touch</div>
+  <h1 style="font-size:2rem;font-weight:800;margin-bottom:2rem">Contact Us</h1>
+  <div class="contact-grid">
+    <div class="info-card">
+      <h3>We're here to help</h3>
+      <p>Have a question, found a bug, or want to suggest a feature? We'd love to hear from you.</p>
+      <div class="ci-list">
+        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-lbl">Email</div><div class="ci-val">support@procvbuilder.com</div></div></div>
+        <div class="ci-item"><div class="ci-icon">🕐</div><div><div class="ci-lbl">Response time</div><div class="ci-val">Within 24 hours</div></div></div>
+        <div class="ci-item"><div class="ci-icon">🌍</div><div><div class="ci-lbl">Available for</div><div class="ci-val">All countries & languages</div></div></div>
+      </div>
+      <div class="faq">
+        <h4>Common questions</h4>
+        <div class="faq-q">Is ProCV really free?</div>
+        <div class="faq-a">Yes, completely free. No hidden charges or premium plans needed.</div>
+        <div class="faq-q">Is my data saved anywhere?</div>
+        <div class="faq-a">No. All data stays in your browser only. We store nothing on any server.</div>
+        <div class="faq-q">Why is my PDF not complete?</div>
+        <div class="faq-a">Make sure to fill in Name and at least one section before downloading. If the issue persists, try a different browser (Chrome works best).</div>
+        <div class="faq-q">Can I use it on mobile?</div>
+        <div class="faq-a">Yes, it works on all devices. For best PDF results, use a desktop or laptop.</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Send a message</h3>
+      <div class="cf"><label>Your name</label><input type="text" id="cf-name" placeholder="Ahmed Khan"></div>
+      <div class="cf"><label>Email address</label><input type="email" id="cf-email" placeholder="ahmed@email.com"></div>
+      <div class="cf"><label>Subject</label>
+        <select id="cf-subject">
+          <option>General feedback</option><option>Bug report</option>
+          <option>Feature request</option><option>Template suggestion</option><option>Other</option>
+        </select>
+      </div>
+      <div class="cf"><label>Message</label><textarea rows="5" id="cf-msg" placeholder="Tell us what's on your mind..."></textarea></div>
+      <button class="btn-send" onclick="sendForm()">Send message</button>
+      <div class="form-note">This is a demo contact form. No data is submitted.</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-wrap">
+  <div class="footer-brand">📄 Pro<strong>CV</strong></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="templates.html">Templates</a><a href="builder.html">Builder</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div>
+  <p class="footer-copy">© 2026 ProCV Builder · Free forever</p>
+</div></footer>
+<script>
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open')}
+function sendForm(){
+  const btn=document.querySelector('.btn-send');
+  btn.textContent='✓ Message sent!';btn.style.background='#188038';
+  setTimeout(()=>{btn.textContent='Send message';btn.style.background='';},3000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Builder – ProCV</title>
+<link rel="stylesheet" href="builder.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="bnav">
+  <a href="index.html" class="bnav-logo">📄 Pro<strong>CV</strong></a>
+  <div class="bnav-center">
+    <div class="ats-pill" id="ats-pill" onclick="toggleATS()">
+      <div class="ats-pill-ring">
+        <svg viewBox="0 0 36 36" width="34" height="34">
+          <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="3"/>
+          <circle cx="18" cy="18" r="14" fill="none" stroke="#4ade80" stroke-width="3"
+            stroke-dasharray="0 88" stroke-linecap="round" id="ats-ring" transform="rotate(-90 18 18)"/>
+        </svg>
+        <span id="ats-num">0</span>
+      </div>
+      <div>
+        <div class="ats-pill-label">ATS Score</div>
+        <div class="ats-pill-sub" id="ats-sub">Add details</div>
+      </div>
+    </div>
+  </div>
+  <div class="bnav-right">
+    <button class="btn-tpl" onclick="openTplModal()">🎨 <span id="tpl-name">Modern</span> ▾</button>
+    <button class="btn-dl" onclick="downloadPDF()" id="dl-btn">
+      ⬇ Download PDF
+    </button>
+  </div>
+</div>
+
+<!-- TEMPLATE MODAL -->
+<div class="tpl-modal" id="tpl-modal" onclick="closeTplModal(event)">
+  <div class="tpl-modal-box">
+    <div class="tmb-header"><h3>Choose template</h3><button onclick="document.getElementById('tpl-modal').style.display='none'">✕</button></div>
+    <div class="tmb-grid">
+      <div class="tmc active" id="tmc-modern" onclick="setTpl('modern')">
+        <div class="tmc-prev" style="background:linear-gradient(135deg,#1a73e8,#4285f4)">
+          <div style="display:flex;gap:6px;height:100%;padding:8px">
+            <div style="width:28px;background:rgba(255,255,255,.18);border-radius:4px"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;padding-top:4px">
+              <div style="height:5px;background:rgba(255,255,255,.6);border-radius:2px;width:90%"></div>
+              <div style="height:4px;background:rgba(255,255,255,.35);border-radius:2px;width:65%"></div>
+              <div style="height:4px;background:rgba(255,255,255,.2);border-radius:2px;width:80%;margin-top:4px"></div>
+              <div style="height:4px;background:rgba(255,255,255,.2);border-radius:2px;width:70%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tmc-label">Modern</div>
+        <div class="tmc-badge" style="background:#1a73e8">Popular</div>
+      </div>
+      <div class="tmc" id="tmc-classic" onclick="setTpl('classic')">
+        <div class="tmc-prev" style="background:#f5f5f5;flex-direction:column;align-items:center;padding:10px">
+          <div style="height:6px;width:60%;background:rgba(0,0,0,.25);border-radius:2px;margin-bottom:4px"></div>
+          <div style="height:4px;width:40%;background:rgba(0,0,0,.15);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:1px;width:100%;background:rgba(0,0,0,.12);margin:5px 0"></div>
+          <div style="height:4px;width:90%;background:rgba(0,0,0,.1);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:4px;width:75%;background:rgba(0,0,0,.1);border-radius:2px"></div>
+        </div>
+        <div class="tmc-label">Classic</div>
+        <div class="tmc-badge" style="background:#188038">Best ATS</div>
+      </div>
+      <div class="tmc" id="tmc-minimal" onclick="setTpl('minimal')">
+        <div class="tmc-prev" style="background:#fff;border:1px solid #e0e0e0;flex-direction:column;padding:10px">
+          <div style="height:7px;width:55%;background:rgba(0,0,0,.2);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:4px;width:35%;background:rgba(0,0,0,.1);border-radius:2px;margin-bottom:6px"></div>
+          <div style="height:1px;width:100%;background:rgba(0,0,0,.06);margin-bottom:6px"></div>
+          <div style="height:4px;width:90%;background:rgba(0,0,0,.07);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:4px;width:70%;background:rgba(0,0,0,.07);border-radius:2px"></div>
+        </div>
+        <div class="tmc-label">Minimal</div>
+        <div class="tmc-badge" style="background:#5f6368">Clean</div>
+      </div>
+      <div class="tmc" id="tmc-creative" onclick="setTpl('creative')">
+        <div class="tmc-prev" style="background:linear-gradient(135deg,#7c3aed,#a855f7);flex-direction:column;padding:10px">
+          <div style="height:8px;background:rgba(255,255,255,.2);border-radius:3px;width:100%;margin-bottom:8px"></div>
+          <div style="height:6px;width:65%;background:rgba(255,255,255,.65);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:4px;width:45%;background:rgba(255,255,255,.4);border-radius:2px;margin-bottom:6px"></div>
+          <div style="height:4px;width:85%;background:rgba(255,255,255,.2);border-radius:2px;margin-bottom:3px"></div>
+          <div style="height:4px;width:70%;background:rgba(255,255,255,.2);border-radius:2px"></div>
+        </div>
+        <div class="tmc-label">Creative</div>
+        <div class="tmc-badge" style="background:#7c3aed">Bold</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATS SIDE PANEL -->
+<div class="ats-panel" id="ats-panel">
+  <div class="ats-panel-head">
+    <h3>🎯 ATS Score</h3>
+    <button onclick="document.getElementById('ats-panel').classList.remove('open')">✕</button>
+  </div>
+  <div class="ats-donut-wrap">
+    <div class="ats-donut">
+      <svg viewBox="0 0 100 100" width="110" height="110">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#e8f0fe" stroke-width="10"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#1a73e8" stroke-width="10"
+          stroke-dasharray="0 251" stroke-linecap="round" id="ats-donut-ring" transform="rotate(-90 50 50)"/>
+      </svg>
+      <div class="ats-donut-label"><span id="ats-big">0</span><small>/100</small></div>
+    </div>
+    <div class="ats-rating" id="ats-rating">Not started</div>
+  </div>
+  <div class="ats-list" id="ats-list"></div>
+  <div class="ats-tips" id="ats-tips"></div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="blayout">
+
+  <!-- LEFT: FORM -->
+  <div class="bleft">
+    <div class="btabs">
+      <button class="btab active" data-t="personal" onclick="goTab('personal',this)">👤 Personal</button>
+      <button class="btab" data-t="education" onclick="goTab('education',this)">🎓 Education</button>
+      <button class="btab" data-t="experience" onclick="goTab('experience',this)">💼 Experience</button>
+      <button class="btab" data-t="skills" onclick="goTab('skills',this)">⚡ Skills</button>
+      <button class="btab" data-t="extras" onclick="goTab('extras',this)">🏆 Extras</button>
+      <button class="btab ats-btn" onclick="toggleATS()">🎯 ATS</button>
+    </div>
+
+    <div class="bscroll">
+
+      <!-- PERSONAL -->
+      <div class="bpane active" id="bp-personal">
+        <div class="pane-hd">Personal information</div>
+
+        <!-- PHOTO -->
+        <div class="photo-box">
+          <div class="photo-ring" id="photo-ring" onclick="document.getElementById('photo-file').click()" title="Click to upload photo">
+            <img id="photo-img" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:50%">
+            <div id="photo-ph"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Photo</span></div>
+          </div>
+          <input type="file" id="photo-file" accept="image/*" style="display:none" onchange="handlePhoto(this)">
+          <div class="photo-info">
+            <div style="font-size:13px;font-weight:600;margin-bottom:3px">Profile photo <span class="opt">Optional</span></div>
+            <div style="font-size:11px;color:#9aa0a6;margin-bottom:6px">JPG or PNG. Adds a personal touch to your CV.</div>
+            <div style="display:flex;gap:6px">
+              <button class="btn-photo-up" onclick="document.getElementById('photo-file').click()">Upload</button>
+              <button class="btn-photo-rm" id="photo-rm" style="display:none" onclick="removePhoto()">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="fgrid">
+          <div class="fg full"><label>Full name <span class="req">*</span></label><input id="p-name" placeholder="e.g. Ahmed Khan" oninput="render();calcATS()"></div>
+          <div class="fg full"><label>Job title / Role</label><input id="p-title" placeholder="e.g. Marketing Manager, Teacher, Engineer..." oninput="render();calcATS()"></div>
+          <div class="fg"><label>Email <span class="req">*</span></label>
+            <div class="inp-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><input id="p-email" type="email" placeholder="your@email.com" oninput="render();calcATS()"></div>
+          </div>
+          <div class="fg"><label>Phone</label>
+            <div class="inp-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.95 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><input id="p-phone" placeholder="+92 300 0000000" oninput="render();calcATS()"></div>
+          </div>
+          <div class="fg"><label>City / Location</label>
+            <div class="inp-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><input id="p-loc" placeholder="Lahore, Pakistan" oninput="render()"></div>
+          </div>
+          <div class="fg"><label>LinkedIn / Website</label>
+            <div class="inp-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><input id="p-link" placeholder="linkedin.com/in/yourname" oninput="render()"></div>
+          </div>
+          <div class="fg full"><label>Professional summary <span style="font-weight:400;color:#9aa0a6;font-size:11px">(boosts ATS score)</span></label>
+            <textarea id="p-summary" rows="4" placeholder="Write 2–3 sentences about your key expertise, experience, and what value you bring. Keep it relevant to the job you're applying for." oninput="render();calcATS();document.getElementById('sc').textContent=this.value.length"></textarea>
+            <div class="field-note"><span id="sc">0</span>/400 characters</div>
+          </div>
+        </div>
+        <div class="pnav"><span></span><button class="btn-next" onclick="goTab('education',document.querySelector('[data-t=education]'))">Education →</button></div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="bpane" id="bp-education">
+        <div class="pane-hd">Education</div>
+        <div id="edu-list"></div>
+        <button class="btn-add" onclick="addEdu()">+ Add education</button>
+        <div class="pnav">
+          <button class="btn-prev" onclick="goTab('personal',document.querySelector('[data-t=personal]'))">← Personal</button>
+          <button class="btn-next" onclick="goTab('experience',document.querySelector('[data-t=experience]'))">Experience →</button>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="bpane" id="bp-experience">
+        <div class="pane-hd">Work experience</div>
+        <div class="pane-hint">Add jobs, internships, volunteer roles, or freelance work — most recent first. Use • for bullet points.</div>
+        <div id="exp-list"></div>
+        <button class="btn-add" onclick="addExp()">+ Add experience</button>
+        <div class="pnav">
+          <button class="btn-prev" onclick="goTab('education',document.querySelector('[data-t=education]'))">← Education</button>
+          <button class="btn-next" onclick="goTab('skills',document.querySelector('[data-t=skills]'))">Skills →</button>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="bpane" id="bp-skills">
+        <div class="pane-hd">Skills & languages</div>
+
+        <div class="skill-sec">
+          <div class="skill-sec-hd">Your skills <span style="font-weight:400;color:#9aa0a6;font-size:11px">(click any category or type your own)</span></div>
+          <div class="skill-inp-row">
+            <input id="skill-inp" placeholder="Type a skill and press Enter..." onkeydown="if(event.key==='Enter'){event.preventDefault();addSkill()}">
+            <button onclick="addSkill()">Add</button>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">💼 General / Soft skills</div>
+            <div class="cat-chips">
+              <button onclick="qs('Leadership')">Leadership</button><button onclick="qs('Communication')">Communication</button>
+              <button onclick="qs('Teamwork')">Teamwork</button><button onclick="qs('Problem Solving')">Problem Solving</button>
+              <button onclick="qs('Time Management')">Time Management</button><button onclick="qs('Critical Thinking')">Critical Thinking</button>
+              <button onclick="qs('Adaptability')">Adaptability</button><button onclick="qs('Creativity')">Creativity</button>
+              <button onclick="qs('Negotiation')">Negotiation</button><button onclick="qs('Public Speaking')">Public Speaking</button>
+              <button onclick="qs('Attention to Detail')">Attention to Detail</button><button onclick="qs('Customer Service')">Customer Service</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">💻 Technology</div>
+            <div class="cat-chips">
+              <button onclick="qs('Microsoft Office')">MS Office</button><button onclick="qs('Excel')">Excel</button>
+              <button onclick="qs('PowerPoint')">PowerPoint</button><button onclick="qs('Google Workspace')">Google Workspace</button>
+              <button onclick="qs('JavaScript')">JavaScript</button><button onclick="qs('Python')">Python</button>
+              <button onclick="qs('React')">React</button><button onclick="qs('SQL')">SQL</button>
+              <button onclick="qs('Photoshop')">Photoshop</button><button onclick="qs('Figma')">Figma</button>
+              <button onclick="qs('AutoCAD')">AutoCAD</button><button onclick="qs('SAP')">SAP</button>
+              <button onclick="qs('Salesforce')">Salesforce</button><button onclick="qs('QuickBooks')">QuickBooks</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">📊 Business & Finance</div>
+            <div class="cat-chips">
+              <button onclick="qs('Project Management')">Project Management</button><button onclick="qs('Data Analysis')">Data Analysis</button>
+              <button onclick="qs('Budgeting')">Budgeting</button><button onclick="qs('Market Research')">Market Research</button>
+              <button onclick="qs('Financial Reporting')">Financial Reporting</button><button onclick="qs('Accounting')">Accounting</button>
+              <button onclick="qs('Risk Management')">Risk Management</button><button onclick="qs('Strategic Planning')">Strategic Planning</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">🏥 Healthcare & Medical</div>
+            <div class="cat-chips">
+              <button onclick="qs('Patient Care')">Patient Care</button><button onclick="qs('First Aid')">First Aid</button>
+              <button onclick="qs('CPR Certified')">CPR Certified</button><button onclick="qs('Medical Records')">Medical Records</button>
+              <button onclick="qs('Clinical Research')">Clinical Research</button><button onclick="qs('Diagnosis')">Diagnosis</button>
+              <button onclick="qs('Pharmacy')">Pharmacy</button><button onclick="qs('Nursing')">Nursing</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">📚 Education & Training</div>
+            <div class="cat-chips">
+              <button onclick="qs('Curriculum Development')">Curriculum Dev.</button><button onclick="qs('Classroom Management')">Classroom Management</button>
+              <button onclick="qs('Mentoring')">Mentoring</button><button onclick="qs('Assessment Design')">Assessment Design</button>
+              <button onclick="qs('E-Learning')">E-Learning</button><button onclick="qs('Training & Development')">Training & Dev.</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">🎨 Design & Creative</div>
+            <div class="cat-chips">
+              <button onclick="qs('Graphic Design')">Graphic Design</button><button onclick="qs('Video Editing')">Video Editing</button>
+              <button onclick="qs('Content Writing')">Content Writing</button><button onclick="qs('Copywriting')">Copywriting</button>
+              <button onclick="qs('Social Media Management')">Social Media</button><button onclick="qs('Photography')">Photography</button>
+              <button onclick="qs('Branding')">Branding</button><button onclick="qs('UI/UX Design')">UI/UX Design</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">⚙️ Engineering & Trades</div>
+            <div class="cat-chips">
+              <button onclick="qs('CAD Design')">CAD Design</button><button onclick="qs('Quality Control')">Quality Control</button>
+              <button onclick="qs('Safety Compliance')">Safety Compliance</button><button onclick="qs('Maintenance')">Maintenance</button>
+              <button onclick="qs('Blueprint Reading')">Blueprint Reading</button><button onclick="qs('Equipment Operation')">Equipment Op.</button>
+              <button onclick="qs('Electrical Systems')">Electrical</button><button onclick="qs('Mechanical Engineering')">Mechanical Eng.</button>
+            </div>
+          </div>
+
+          <div class="cat-group"><div class="cat-label">🛒 Sales & Marketing</div>
+            <div class="cat-chips">
+              <button onclick="qs('Sales')">Sales</button><button onclick="qs('Digital Marketing')">Digital Marketing</button>
+              <button onclick="qs('SEO')">SEO</button><button onclick="qs('Email Marketing')">Email Marketing</button>
+              <button onclick="qs('CRM')">CRM</button><button onclick="qs('Brand Management')">Brand Management</button>
+              <button onclick="qs('Lead Generation')">Lead Generation</button>
+            </div>
+          </div>
+
+          <div class="tags-wrap" id="skill-tags"></div>
+        </div>
+
+        <div class="skill-sec">
+          <div class="skill-sec-hd">Languages</div>
+          <div class="skill-inp-row">
+            <input id="lang-inp" placeholder="e.g. English (Fluent)" onkeydown="if(event.key==='Enter'){event.preventDefault();addLang()}">
+            <button onclick="addLang()">Add</button>
+          </div>
+          <div class="cat-chips" style="margin-bottom:8px">
+            <button onclick="ql('English (Fluent)')">English</button>
+            <button onclick="ql('Urdu (Native)')">Urdu</button>
+            <button onclick="ql('Arabic (Intermediate)')">Arabic</button>
+            <button onclick="ql('Hindi (Fluent)')">Hindi</button>
+            <button onclick="ql('French (Basic)')">French</button>
+            <button onclick="ql('Spanish (Intermediate)')">Spanish</button>
+            <button onclick="ql('Chinese (Basic)')">Chinese</button>
+            <button onclick="ql('German (Basic)')">German</button>
+          </div>
+          <div class="tags-wrap" id="lang-tags"></div>
+        </div>
+
+        <div class="pnav">
+          <button class="btn-prev" onclick="goTab('experience',document.querySelector('[data-t=experience]'))">← Experience</button>
+          <button class="btn-next" onclick="goTab('extras',document.querySelector('[data-t=extras]'))">Extras →</button>
+        </div>
+      </div>
+
+      <!-- EXTRAS -->
+      <div class="bpane" id="bp-extras">
+        <div class="pane-hd">Certifications & projects</div>
+        <div class="extras-label">🏅 Certifications</div>
+        <div id="cert-list"></div>
+        <button class="btn-add" onclick="addCert()">+ Add certification</button>
+
+        <div class="extras-label" style="margin-top:1.5rem">💻 Projects</div>
+        <div id="proj-list"></div>
+        <button class="btn-add" onclick="addProj()">+ Add project</button>
+
+        <div class="pnav">
+          <button class="btn-prev" onclick="goTab('skills',document.querySelector('[data-t=skills]'))">← Skills</button>
+          <button class="btn-dl-final" onclick="downloadPDF()">⬇ Download PDF</button>
+        </div>
+      </div>
+
+    </div><!-- /bscroll -->
+  </div><!-- /bleft -->
+
+  <!-- RIGHT: LIVE PREVIEW -->
+  <div class="bright">
+    <div class="preview-bar">
+      <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:6px">👁 Live preview</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.3)">Updates as you type</span>
+    </div>
+    <div class="preview-scroll">
+      <div class="cv-page" id="cv-page"></div>
+    </div>
+  </div>
+
+</div><!-- /blayout -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="builder.js"></script>
+</body>
+</html>

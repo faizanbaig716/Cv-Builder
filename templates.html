@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Templates – ProCV Builder</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="page-body">
+
+<nav class="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">📄 Pro<strong>CV</strong></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="templates.html" class="nav-a active">Templates</a>
+      <a href="builder.html" class="nav-a">Builder</a>
+      <a href="about.html" class="nav-a">About</a>
+      <a href="contact.html" class="nav-a">Contact</a>
+    </div>
+    <a href="builder.html" class="nav-btn">Build My CV →</a>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a><a href="templates.html">Templates</a>
+    <a href="builder.html">Builder</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="builder.html" class="nav-btn" style="margin-top:8px;text-align:center">Build My CV →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="sec-label">Choose your style</div>
+  <h1>Professional CV Templates</h1>
+  <p>All templates are ATS-optimized, recruiter-approved, and produce clean PDF downloads.</p>
+</div>
+
+<div class="tpl-grid">
+
+  <div class="tpl-card">
+    <div class="tpl-thumb thumb-modern">
+      <div class="tb-sidebar">
+        <div class="tb-circle"></div>
+        <div class="tb-bar w90" style="background:rgba(255,255,255,.5)"></div>
+        <div class="tb-bar w70" style="background:rgba(255,255,255,.3)"></div>
+        <div class="tb-gap"></div>
+        <div class="tb-bar w80" style="background:rgba(255,255,255,.25)"></div>
+        <div class="tb-bar w60" style="background:rgba(255,255,255,.25)"></div>
+        <div class="tb-bar w75" style="background:rgba(255,255,255,.25)"></div>
+      </div>
+      <div class="tb-main" style="padding-left:10px">
+        <div class="tb-bar w90 d" style="background:rgba(255,255,255,.7);height:9px"></div>
+        <div class="tb-bar w60" style="background:rgba(255,255,255,.45)"></div>
+        <div class="tb-gap"></div>
+        <div class="tb-bar w80" style="background:rgba(255,255,255,.25)"></div>
+        <div class="tb-bar w90" style="background:rgba(255,255,255,.25)"></div>
+        <div class="tb-bar w70" style="background:rgba(255,255,255,.25)"></div>
+      </div>
+    </div>
+    <div class="tpl-info">
+      <div class="tpl-name">Modern</div>
+      <div class="tpl-desc">Two-column layout with sidebar. Bold and clean. Great for tech, business, and creative roles.</div>
+      <div class="tpl-tags"><span class="ttag b">Most Popular</span><span class="ttag">ATS Friendly</span></div>
+      <a href="builder.html?t=modern" class="btn-use">Use Modern Template</a>
+    </div>
+  </div>
+
+  <div class="tpl-card">
+    <div class="tpl-thumb thumb-classic" style="padding:16px">
+      <div class="tb-bar w60 d center" style="margin-bottom:5px;height:9px"></div>
+      <div class="tb-bar w40 m center" style="margin-bottom:3px"></div>
+      <div class="tb-bar w80 s m center" style="margin-bottom:8px"></div>
+      <div class="tb-divider"></div>
+      <div class="tb-bar w25 a" style="margin-bottom:5px;height:6px;background:rgba(26,115,232,.5)"></div>
+      <div class="tb-bar w90 m"></div>
+      <div class="tb-bar w80 m" style="margin-top:3px"></div>
+      <div class="tb-gap"></div>
+      <div class="tb-bar w25 a" style="margin-bottom:5px;height:6px;background:rgba(26,115,232,.5)"></div>
+      <div class="tb-bar w90 m"></div>
+      <div class="tb-bar w70 m" style="margin-top:3px"></div>
+    </div>
+    <div class="tpl-info">
+      <div class="tpl-name">Classic</div>
+      <div class="tpl-desc">Traditional single-column format. Timeless and professional. Best for corporate and formal industries.</div>
+      <div class="tpl-tags"><span class="ttag g">Best for ATS</span><span class="ttag">Corporate</span></div>
+      <a href="builder.html?t=classic" class="btn-use">Use Classic Template</a>
+    </div>
+  </div>
+
+  <div class="tpl-card">
+    <div class="tpl-thumb thumb-minimal" style="padding:16px">
+      <div class="tb-bar w55 d" style="height:9px;background:rgba(0,0,0,.25);width:55%;margin-bottom:4px"></div>
+      <div class="tb-bar w38 m" style="width:38%;background:rgba(0,0,0,.15);margin-bottom:8px"></div>
+      <div class="tb-divider" style="background:rgba(0,0,0,.08)"></div>
+      <div class="tb-bar w20 d" style="height:6px;width:20%;background:rgba(0,0,0,.2);margin-bottom:5px"></div>
+      <div class="tb-bar w90 m" style="background:rgba(0,0,0,.08)"></div>
+      <div class="tb-bar w75 m" style="background:rgba(0,0,0,.08);margin-top:3px"></div>
+      <div class="tb-gap"></div>
+      <div class="tb-chips" style="gap:5px">
+        <div class="tb-chip" style="background:rgba(0,0,0,.07)"></div>
+        <div class="tb-chip" style="background:rgba(0,0,0,.07)"></div>
+        <div class="tb-chip" style="background:rgba(0,0,0,.07)"></div>
+      </div>
+    </div>
+    <div class="tpl-info">
+      <div class="tpl-name">Minimal</div>
+      <div class="tpl-desc">Ultra-clean, whitespace-driven design. Let your achievements speak. Perfect for any profession.</div>
+      <div class="tpl-tags"><span class="ttag gr">Clean & Simple</span><span class="ttag">ATS Friendly</span></div>
+      <a href="builder.html?t=minimal" class="btn-use">Use Minimal Template</a>
+    </div>
+  </div>
+
+  <div class="tpl-card">
+    <div class="tpl-thumb thumb-creative" style="padding:14px">
+      <div style="height:10px;background:rgba(255,255,255,.2);border-radius:4px;width:100%;margin-bottom:10px"></div>
+      <div class="tb-bar w65 d" style="background:rgba(255,255,255,.75);height:9px;width:65%;margin-bottom:4px"></div>
+      <div class="tb-bar w45" style="background:rgba(255,255,255,.4);width:45%;margin-bottom:10px"></div>
+      <div style="height:6px;width:22%;background:rgba(255,255,255,.35);border-radius:3px;margin-bottom:6px"></div>
+      <div class="tb-bar w90" style="background:rgba(255,255,255,.2)"></div>
+      <div class="tb-bar w75" style="background:rgba(255,255,255,.2);margin-top:3px"></div>
+      <div class="tb-gap"></div>
+      <div class="tb-chips"><div class="tb-chip"></div><div class="tb-chip"></div></div>
+    </div>
+    <div class="tpl-info">
+      <div class="tpl-name">Creative</div>
+      <div class="tpl-desc">Bold purple header with modern typography. Make a strong impression in design and marketing.</div>
+      <div class="tpl-tags"><span class="ttag p">Eye-catching</span><span class="ttag">Modern</span></div>
+      <a href="builder.html?t=creative" class="btn-use">Use Creative Template</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="ats-note" style="padding:1.5rem 2rem;margin-bottom:3rem">
+  <div class="ats-note-icon">🎯</div>
+  <div>
+    <h4>All templates pass ATS screening</h4>
+    <p>Applicant Tracking Systems scan resumes before a human sees them. Our templates avoid ATS-breaking elements like tables, columns in PDFs, headers/footers, and fancy fonts. Your CV will reach the recruiter.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-wrap">
+    <div class="footer-brand">📄 Pro<strong>CV</strong></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="templates.html">Templates</a>
+      <a href="builder.html">Builder</a><a href="about.html">About</a>
+      <a href="contact.html">Contact</a><a href="privacy.html">Privacy</a>
+    </div>
+    <p class="footer-copy">© 2026 ProCV Builder · Free forever</p>
+  </div>
+</footer>
+<script>function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open')}</script>
+</body>
+</html>
